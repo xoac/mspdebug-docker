@@ -1,7 +1,10 @@
+name: "Build ubuntu images every month"
 on:
   push:
     branches:
       - master
+  schedule:
+    - cron: "21 21 22 * *"
 
 jobs:
   multi:
@@ -32,10 +35,3 @@ jobs:
           push: true
           tags: |
             sylwekrapala/mspdebug:latest
-      -
-        name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v2
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
-          DOCKERHUB_REPOSITORY: sylwekrapala/mspdebug
